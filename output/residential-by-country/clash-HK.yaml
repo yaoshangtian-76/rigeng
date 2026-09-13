@@ -5,18 +5,6 @@ mode: rule
 log-level: info
 proxies:
 - name: 🇭🇰 中国香港 (Hong Kong) 01 (家宽) - xiaohe
-  server: hkt.ddnnss.me
-  port: 443
-  udp: true
-  type: vless
-  uuid: 363d3f39-bed2-3b6a-b692-c7c3236c2b1c
-  flow: xtls-rprx-vision
-  tls: true
-  reality-opts:
-    public-key: coAFlCEKJKpNWWSMAbgwnXtWa703hZZkjoQznSF_Pz0
-  servername: www.xdstudio.hk
-  client-fingerprint: firefox
-- name: 🇭🇰 中国香港 (Hong Kong) 02 (家宽) - xiaohe
   server: dlbgwqqngrjbwan.jiedddym.com
   port: 42868
   udp: true
@@ -35,13 +23,11 @@ proxy-groups:
   proxies:
   - AUTO
   - 🇭🇰 中国香港 (Hong Kong) 01 (家宽) - xiaohe
-  - 🇭🇰 中国香港 (Hong Kong) 02 (家宽) - xiaohe
 - name: AUTO
   type: url-test
   url: https://www.gstatic.com/generate_204
   interval: 300
   proxies:
   - 🇭🇰 中国香港 (Hong Kong) 01 (家宽) - xiaohe
-  - 🇭🇰 中国香港 (Hong Kong) 02 (家宽) - xiaohe
 rules:
 - MATCH,PROXIES
