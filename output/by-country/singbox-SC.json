@@ -12,7 +12,7 @@
       "tls": {
         "enabled": true,
         "server_name": "hopp-legend-se.roxa.org",
-        "insecure": true
+        "insecure": false
       }
     },
     {
@@ -27,7 +27,7 @@
         "server_name": "www.apple.com",
         "utls": {
           "enabled": true,
-          "fingerprint": "firefox"
+          "fingerprint": "chrome"
         },
         "reality": {
           "enabled": true,

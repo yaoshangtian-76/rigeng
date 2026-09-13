@@ -6,84 +6,74 @@
     {
       "type": "vless",
       "tag": "🇷🇺 俄罗斯 (Russia) 01 - xiaohe",
-      "server": "188.114.97.6",
-      "server_port": 8080,
-      "uuid": "47fcef29-ab4e-4aa6-932b-d95a18f28a4e",
+      "server": "188.114.96.3",
+      "server_port": 2087,
+      "uuid": "756e8f39-04e8-436d-b5c6-905d37d9562c",
+      "tls": {
+        "enabled": true,
+        "server_name": "Ez-98919A.MOtoRicb.Workers.DeV",
+        "insecure": false,
+        "alpn": [
+          "http/1.1"
+        ],
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        }
+      },
       "transport": {
         "type": "ws",
-        "path": "/?ed=2560",
+        "path": "/eyJqdW5rIjoiR1BxUFhYR0w1TlBLMTRsIiwicHJvdG9jb2wiOiJ2bCIsIm1vZGUiOiJwcm94eWlwIiwicGFuZWxJUHMiOltdfQ",
         "headers": {
-          "Host": "ne4d3.thir.mn8.hh.vavava.kdns.fr"
+          "Host": "ez-98919a.motoricb.workers.dev"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇷🇺 俄罗斯 (Russia) 02 - xiaohe",
+      "server": "104.17.147.22",
+      "server_port": 2053,
+      "uuid": "401d950d-4f5c-45c7-bf44-8b69acf35f6f",
+      "tls": {
+        "enabled": true,
+        "server_name": "7X70yyvt7EQOTx-iq9N3rjt1xN1jWKH9.aSDfsAfDSAF.WOrKerS.dev",
+        "insecure": false,
+        "alpn": [
+          "http/1.1"
+        ]
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/eyJqdW5rIjoiU2RJd1dRWkd6IiwicHJvdG9jb2wiOiJ2bCIsIm1vZGUiOiJwcm94eWlwIiwicGFuZWxJUHMiOltdfQ==",
+        "headers": {
+          "Host": "7x70yyvt7eqotx-iq9n3rjt1xn1jwkh9.asdfsafdsaf.workers.dev"
         }
       }
     },
     {
       "type": "shadowsocks",
-      "tag": "🇷🇺 俄罗斯 (Russia) 02 - xiaohe",
-      "server": "194.87.196.13",
+      "tag": "🇷🇺 俄罗斯 (Russia) 03 - xiaohe",
+      "server": "195.133.23.200",
       "server_port": 50111,
       "method": "aes-256-gcm",
-      "password": "4938e975724d0ed1"
+      "password": "81a20429165df87e"
     },
     {
-      "type": "vless",
-      "tag": "🇷🇺 俄罗斯 (Russia) 03 - xiaohe",
-      "server": "147.78.182.3",
-      "server_port": 8443,
-      "uuid": "8bf3e040-8ac9-5d0e-304f-9b735e145de8",
-      "tls": {
-        "enabled": true,
-        "server_name": "www.epson.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        },
-        "reality": {
-          "enabled": true,
-          "public_key": "Rt2wltCWOxIroFggNWMudZDBJXls8DsF4icaWqxKDk8",
-          "short_id": ""
-        }
-      },
-      "transport": {
-        "type": "grpc",
-        "service_name": "TunService"
-      }
-    },
-    {
-      "type": "hysteria2",
+      "type": "shadowsocks",
       "tag": "🇷🇺 俄罗斯 (Russia) 04 - xiaohe",
-      "server": "91.196.32.163",
-      "server_port": 443,
-      "password": "mkL3AfdSZIpTWRB9TcWPn9vywPGN89MRHg3ToRDj",
-      "tls": {
-        "enabled": true,
-        "server_name": "germany3.h2corp.local",
-        "insecure": true
-      }
+      "server": "195.133.5.102",
+      "server_port": 50111,
+      "method": "aes-256-gcm",
+      "password": "895b4b796a357570"
     },
     {
-      "type": "vless",
+      "type": "shadowsocks",
       "tag": "🇷🇺 俄罗斯 (Russia) 05 - xiaohe",
-      "server": "170.168.99.8",
-      "server_port": 8443,
-      "uuid": "96b44347-cac5-cfae-383b-1724ae9b5aec",
-      "tls": {
-        "enabled": true,
-        "server_name": "www.epson.com",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        },
-        "reality": {
-          "enabled": true,
-          "public_key": "-GbQJg3bnEGEVFjVaRRu01cgF1f0K_maI4d5MWtMb28",
-          "short_id": ""
-        }
-      },
-      "transport": {
-        "type": "grpc",
-        "service_name": "TunService"
-      }
+      "server": "130.49.189.158",
+      "server_port": 43558,
+      "method": "chacha20-ietf-poly1305",
+      "password": "jIlQi9jGPJd7KHMx6Y4+JbaNoWSWfe2A73U4J4o0Qrs="
     },
     {
       "type": "hysteria2",
@@ -100,26 +90,6 @@
     {
       "type": "vless",
       "tag": "🇷🇺 俄罗斯 (Russia) 07 - xiaohe",
-      "server": "45.12.75.242",
-      "server_port": 26424,
-      "uuid": "633f424e-2b11-48da-a6b3-a849dd71456f",
-      "tls": {
-        "enabled": true,
-        "server_name": "ya.ru",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        },
-        "reality": {
-          "enabled": true,
-          "public_key": "l8AubqcxQO-HRFJy4pZL1vbLOo-eXit69s-XulSELE0",
-          "short_id": "23103e1e"
-        }
-      }
-    },
-    {
-      "type": "vless",
-      "tag": "🇷🇺 俄罗斯 (Russia) 08 - xiaohe",
       "server": "46.8.200.91",
       "server_port": 443,
       "uuid": "0a2dde28-70da-4863-a06f-35d007d94d35",
@@ -137,6 +107,26 @@
         "path": "/casc",
         "headers": {
           "Host": "cf3.rumedia-cdn.com"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇷🇺 俄罗斯 (Russia) 08 - xiaohe",
+      "server": "45.12.75.242",
+      "server_port": 26424,
+      "uuid": "633f424e-2b11-48da-a6b3-a849dd71456f",
+      "tls": {
+        "enabled": true,
+        "server_name": "ya.ru",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "l8AubqcxQO-HRFJy4pZL1vbLOo-eXit69s-XulSELE0",
+          "short_id": "23103e1e"
         }
       }
     },
