@@ -31,18 +31,18 @@ proxies:
   servername: www.apple.com
   client-fingerprint: chrome
 - name: 🇮🇹 意大利 (Italy) 04 - xiaohe
-  server: 172.238.232.239
-  port: 32833
+  server: 82.118.16.187
+  port: 443
   udp: true
   type: vless
-  uuid: 167ed405-7de9-4bff-b1ea-6e3d49c76b0b
+  uuid: dc2259c4-388e-4285-ba18-df619b6672b6
   flow: xtls-rprx-vision
   tls: true
   reality-opts:
-    public-key: PaTDdYBrlh1xBixdI0igvRRkf0vnUwMRzi-4oDyfS20
-    short-id: a0a305ccc8e94aa8
-  servername: www.intel.com
-  client-fingerprint: firefox
+    public-key: R5ycsjJ-v024902dMSqTsSdqxUwCFEXMebdBEWFt9VU
+    short-id: cd6065902eea7a02
+  servername: www.cloudflare.com
+  client-fingerprint: chrome
 proxy-groups:
 - name: PROXIES
   type: select
