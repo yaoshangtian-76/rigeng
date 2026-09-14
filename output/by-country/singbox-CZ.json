@@ -1,0 +1,47 @@
+{
+  "log": {
+    "level": "warn"
+  },
+  "outbounds": [
+    {
+      "type": "vless",
+      "tag": "🇨🇿 捷克 (Czech) 01 - xiaohe",
+      "server": "188.114.97.6",
+      "server_port": 8080,
+      "uuid": "f2f4e2dc-3e7b-402f-a461-b48acc6aa310",
+      "transport": {
+        "type": "ws",
+        "path": "/eyJqdW5rIjoid2JBOTRVclNMOVdBSVQiLCJwcm90b2NvbCI6InZsIiwibW9kZSI6InByb3h5aXAiLCJwYW5lbElQcyI6W119",
+        "headers": {
+          "Host": "steep-bonus-8e6a.amirhon1376.workers.dev"
+        },
+        "max_early_data": 2560,
+        "early_data_header_name": "Sec-WebSocket-Protocol"
+      }
+    },
+    {
+      "type": "selector",
+      "tag": "select",
+      "outbounds": [
+        "auto",
+        "🇨🇿 捷克 (Czech) 01 - xiaohe"
+      ]
+    },
+    {
+      "type": "urltest",
+      "tag": "auto",
+      "outbounds": [
+        "🇨🇿 捷克 (Czech) 01 - xiaohe"
+      ],
+      "url": "https://www.gstatic.com/generate_204"
+    },
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "block",
+      "tag": "block"
+    }
+  ]
+}
