@@ -4,28 +4,22 @@
   },
   "outbounds": [
     {
-      "type": "trojan",
-      "tag": "🇱🇺 卢森堡 (Luxembourg) 01 - xiaohe",
-      "server": "188.42.145.180",
-      "server_port": 443,
-      "password": "humanity",
+      "type": "vless",
+      "tag": "🇳🇴 挪威 (Norway) 01 - xiaohe",
+      "server": "46.29.238.32",
+      "server_port": 40443,
+      "uuid": "ed91e79c-f6bf-4fba-8cc0-6d45acaec22b",
       "tls": {
         "enabled": true,
-        "server_name": "www.volumeroot.com",
-        "insecure": false,
-        "alpn": [
-          "http/1.1"
-        ],
+        "server_name": "deepl.com",
         "utls": {
           "enabled": true,
           "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/assignment",
-        "headers": {
-          "Host": "www.volumeroot.com"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "dvx6zPztKbgHpYaW6J4OZQC74Uy0JS6HUVdDfbjG5V4",
+          "short_id": "7606"
         }
       }
     },
@@ -34,14 +28,14 @@
       "tag": "select",
       "outbounds": [
         "auto",
-        "🇱🇺 卢森堡 (Luxembourg) 01 - xiaohe"
+        "🇳🇴 挪威 (Norway) 01 - xiaohe"
       ]
     },
     {
       "type": "urltest",
       "tag": "auto",
       "outbounds": [
-        "🇱🇺 卢森堡 (Luxembourg) 01 - xiaohe"
+        "🇳🇴 挪威 (Norway) 01 - xiaohe"
       ],
       "url": "https://www.gstatic.com/generate_204"
     },
