@@ -18,16 +18,12 @@
       }
     },
     {
-      "type": "hysteria2",
+      "type": "shadowsocks",
       "tag": "🇨🇭 瑞士 (Switzerland) 02 - xiaohe",
-      "server": "140.238.213.114",
-      "server_port": 50160,
-      "password": "84a506ca5aca505696a454d828420b3f",
-      "tls": {
-        "enabled": true,
-        "server_name": "www.bing.com",
-        "insecure": true
-      }
+      "server": "132.243.175.144",
+      "server_port": 8388,
+      "method": "chacha20-ietf-poly1305",
+      "password": "e8KgS8fD0yDqYFpgN4G5piCOt9aFyqA3"
     },
     {
       "type": "hysteria2",
@@ -61,28 +57,8 @@
       }
     },
     {
-      "type": "hysteria2",
-      "tag": "🇨🇭 瑞士 (Switzerland) 05 - xiaohe",
-      "server": "104.165.205.40",
-      "server_port": 8443,
-      "password": "54d2f622-fd71-4f5f-8813-832b68f4ca3b",
-      "tls": {
-        "enabled": true,
-        "server_name": "speedtestmark.com",
-        "insecure": false
-      }
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "🇨🇭 瑞士 (Switzerland) 06 - xiaohe",
-      "server": "132.243.175.144",
-      "server_port": 8388,
-      "method": "chacha20-ietf-poly1305",
-      "password": "e8KgS8fD0yDqYFpgN4G5piCOt9aFyqA3"
-    },
-    {
       "type": "vless",
-      "tag": "🇨🇭 瑞士 (Switzerland) 07 - xiaohe",
+      "tag": "🇨🇭 瑞士 (Switzerland) 05 - xiaohe",
       "server": "104.18.28.234",
       "server_port": 443,
       "uuid": "f6b5a6a3-f3e1-63ca-bb68-bdc400000000",
@@ -112,9 +88,7 @@
         "🇨🇭 瑞士 (Switzerland) 02 - xiaohe",
         "🇨🇭 瑞士 (Switzerland) 03 - xiaohe",
         "🇨🇭 瑞士 (Switzerland) 04 - xiaohe",
-        "🇨🇭 瑞士 (Switzerland) 05 - xiaohe",
-        "🇨🇭 瑞士 (Switzerland) 06 - xiaohe",
-        "🇨🇭 瑞士 (Switzerland) 07 - xiaohe"
+        "🇨🇭 瑞士 (Switzerland) 05 - xiaohe"
       ]
     },
     {
@@ -125,9 +99,7 @@
         "🇨🇭 瑞士 (Switzerland) 02 - xiaohe",
         "🇨🇭 瑞士 (Switzerland) 03 - xiaohe",
         "🇨🇭 瑞士 (Switzerland) 04 - xiaohe",
-        "🇨🇭 瑞士 (Switzerland) 05 - xiaohe",
-        "🇨🇭 瑞士 (Switzerland) 06 - xiaohe",
-        "🇨🇭 瑞士 (Switzerland) 07 - xiaohe"
+        "🇨🇭 瑞士 (Switzerland) 05 - xiaohe"
       ],
       "url": "https://www.gstatic.com/generate_204"
     },

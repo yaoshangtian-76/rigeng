@@ -5,27 +5,22 @@
   "outbounds": [
     {
       "type": "vless",
-      "tag": "🇨🇿 捷克 (Czech) 01 - xiaohe",
-      "server": "66.81.247.155",
-      "server_port": 2083,
-      "uuid": "6cc29a05-4828-4e48-a34a-20b7ada60e85",
+      "tag": "🇰🇷 韩国 (South Korea) 01 (家宽) - xiaohe",
+      "server": "hg.zhujue.us",
+      "server_port": 11000,
+      "uuid": "0e46345c-f33b-4f9b-b8ec-90e7c986af7e",
+      "flow": "xtls-rprx-vision",
       "tls": {
         "enabled": true,
-        "server_name": "testmikonim.hydrymhmdamyn7.workers.dev",
-        "insecure": false,
-        "alpn": [
-          "http/1.1"
-        ],
+        "server_name": "s0.awsstatic.com",
         "utls": {
           "enabled": true,
           "fingerprint": "chrome"
-        }
-      },
-      "transport": {
-        "type": "ws",
-        "path": "/OAZko425kNFF0PpQ",
-        "headers": {
-          "Host": "testmikonim.hydrymhmdamyn7.workers.dev"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "sFRyah8EOSGcab8TfIdkq53c5HBSwAVfYQCyvZ0_BG4",
+          "short_id": ""
         }
       }
     },
@@ -34,14 +29,14 @@
       "tag": "select",
       "outbounds": [
         "auto",
-        "🇨🇿 捷克 (Czech) 01 - xiaohe"
+        "🇰🇷 韩国 (South Korea) 01 (家宽) - xiaohe"
       ]
     },
     {
       "type": "urltest",
       "tag": "auto",
       "outbounds": [
-        "🇨🇿 捷克 (Czech) 01 - xiaohe"
+        "🇰🇷 韩国 (South Korea) 01 (家宽) - xiaohe"
       ],
       "url": "https://www.gstatic.com/generate_204"
     },
