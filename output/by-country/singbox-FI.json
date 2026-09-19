@@ -4,27 +4,12 @@
   },
   "outbounds": [
     {
-      "type": "trojan",
+      "type": "shadowsocks",
       "tag": "🇫🇮 芬兰 (Finland) 01 - xiaohe",
-      "server": "150.241.71.148",
-      "server_port": 448,
-      "password": "6fY77UmuJ6BEK7n0qv433JrPNjCMeZQV",
-      "tls": {
-        "enabled": true,
-        "server_name": "kiev.gosgenarchive.com",
-        "insecure": false,
-        "alpn": [
-          "h2"
-        ],
-        "utls": {
-          "enabled": true,
-          "fingerprint": "firefox"
-        }
-      },
-      "transport": {
-        "type": "grpc",
-        "service_name": "TrojanGRPC"
-      }
+      "server": "82.47.186.18",
+      "server_port": 19290,
+      "method": "aes-128-gcm",
+      "password": "o2rw2hICwu1blrr_gZAl2Q"
     },
     {
       "type": "selector",
