@@ -5,8 +5,8 @@ mode: rule
 log-level: info
 proxies:
 - name: 🇰🇿 哈萨克斯坦 (Kazakhstan) 01 - xiaohe
-  server: 172.64.52.6
-  port: 8880
+  server: 162.159.24.131
+  port: 2082
   udp: true
   type: vless
   uuid: 47fcef29-ab4e-4aa6-932b-d95a18f28a4e
@@ -15,17 +15,75 @@ proxies:
     path: /?ed=2560security=tls
     headers:
       Host: 8nj2r.2k8t.f88.hh.vavava.kdns.fr
+- name: 🇰🇿 哈萨克斯坦 (Kazakhstan) 02 - xiaohe
+  server: 162.159.48.32
+  port: 2095
+  udp: true
+  type: vless
+  uuid: 47fcef29-ab4e-4aa6-932b-d95a18f28a4e
+  network: ws
+  ws-opts:
+    path: '/?ed=2560security=tls '
+    headers:
+      Host: 8nj2r.2k8t.f88.hh.vavava.kdns.fr
+- name: 🇰🇿 哈萨克斯坦 (Kazakhstan) 03 - xiaohe
+  server: 172.64.52.6
+  port: 8080
+  udp: true
+  type: vless
+  uuid: 47fcef29-ab4e-4aa6-932b-d95a18f28a4e
+  network: ws
+  ws-opts:
+    path: /?ed=2560security=tls
+    headers:
+      Host: 8nj2r.2k8t.f88.hh.vavava.kdns.fr
+- name: 🇰🇿 哈萨克斯坦 (Kazakhstan) 04 - xiaohe
+  server: 77.74.228.123
+  port: 443
+  udp: true
+  type: vless
+  uuid: 1d16c6e0-1bbe-435b-b661-90043fee999c
+  tls: true
+  servername: notls.lukongtou.eu.org
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /
+    headers:
+      Host: notls.lukongtou.eu.org
+- name: 🇰🇿 哈萨克斯坦 (Kazakhstan) 05 - xiaohe
+  server: 162.159.130.234
+  port: 2083
+  udp: true
+  type: vless
+  uuid: d342d11e-d424-4583-b36e-524ab1f0afa4
+  tls: true
+  servername: newwk1.f1w.de5.net
+  skip-cert-verify: false
+  network: ws
+  ws-opts:
+    path: /
+    headers:
+      Host: newwk1.f1w.de5.net
 proxy-groups:
 - name: PROXIES
   type: select
   proxies:
   - AUTO
   - 🇰🇿 哈萨克斯坦 (Kazakhstan) 01 - xiaohe
+  - 🇰🇿 哈萨克斯坦 (Kazakhstan) 02 - xiaohe
+  - 🇰🇿 哈萨克斯坦 (Kazakhstan) 03 - xiaohe
+  - 🇰🇿 哈萨克斯坦 (Kazakhstan) 04 - xiaohe
+  - 🇰🇿 哈萨克斯坦 (Kazakhstan) 05 - xiaohe
 - name: AUTO
   type: url-test
   url: https://www.gstatic.com/generate_204
   interval: 300
   proxies:
   - 🇰🇿 哈萨克斯坦 (Kazakhstan) 01 - xiaohe
+  - 🇰🇿 哈萨克斯坦 (Kazakhstan) 02 - xiaohe
+  - 🇰🇿 哈萨克斯坦 (Kazakhstan) 03 - xiaohe
+  - 🇰🇿 哈萨克斯坦 (Kazakhstan) 04 - xiaohe
+  - 🇰🇿 哈萨克斯坦 (Kazakhstan) 05 - xiaohe
 rules:
 - MATCH,PROXIES
