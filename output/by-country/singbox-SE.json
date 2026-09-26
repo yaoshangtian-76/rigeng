@@ -6,10 +6,10 @@
     {
       "type": "shadowsocks",
       "tag": "🇸🇪 瑞典 (Sweden) 01 - xiaohe",
-      "server": "13.48.104.64",
-      "server_port": 443,
-      "method": "aes-256-cfb",
-      "password": "amazonskr05"
+      "server": "70.34.212.124",
+      "server_port": 8388,
+      "method": "aes-256-gcm",
+      "password": "AxIYWtskJWIIaefW"
     },
     {
       "type": "shadowsocks",
@@ -65,7 +65,7 @@
       "tls": {
         "enabled": true,
         "server_name": "cf2.rumedia-cdn.com",
-        "insecure": false
+        "insecure": true
       }
     },
     {
