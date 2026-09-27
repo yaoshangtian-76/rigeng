@@ -4,27 +4,20 @@ allow-lan: true
 mode: rule
 log-level: info
 proxies:
-- name: 🇰🇷 韩国 (South Korea) 01 (家宽) - xiaohe
-  server: cf.877774.xyz
-  port: 443
-  udp: true
-  type: vless
-  uuid: 97532b08-357e-4140-a6f0-8e07f2ed3327
-  tls: true
-  servername: yf.962456.xyz
-  skip-cert-verify: false
-  client-fingerprint: random
-  network: ws
-  ws-opts:
-    path: /proxyip=kr.william.us.ci
-    headers:
-      Host: yf.962456.xyz
-- name: 🇹🇷 土耳其 (Turkey) 02 (移动家宽) - xiaohe
-  server: 82.47.63.156
+- name: 🇹🇷 土耳其 (Turkey) 01 (移动家宽) - xiaohe
+  server: test.keoplentuio.xyz
   port: 2053
   udp: true
   type: vless
   uuid: 9ef61079-6f7d-4911-9608-943da85d8e6f
+- name: 🇭🇰 中国香港 (Hong Kong) 02 (家宽) - xiaohe
+  server: ac7548f3ebe045b39a90288ff1e97528.pnuqcnp.cn
+  port: 443
+  udp: true
+  type: anytls
+  password: 9sK2mP8xQ7vL3nZ6
+  sni: ac7548f3ebe045b39a90288ff1e97528.lwdnxf.cn
+  skip-cert-verify: false
 - name: 🇹🇼 中国台湾 (Taiwan) 03 (家宽) - xiaohe
   server: 118.167.230.191
   port: 24215
@@ -36,48 +29,21 @@ proxies:
     public-key: mdWKUPMVTtTbDqK10BPb89OcqBC2-Lx-4NOYtqc1GWE
   servername: addons.mozilla.org
   client-fingerprint: edge
-- name: 🇯🇵 日本 (Japan) 04 (家宽) - xiaohe
-  server: 175.195.149.58
-  port: 10280
-  udp: true
-  type: vless
-  uuid: 8638521a-7d64-4ad0-9112-83aa1fc19867
-  tls: true
-  servername: bapj1qapjk4.0sds0li1bwcz0i76it0gjxv1.workers.dev
-  skip-cert-verify: false
-  client-fingerprint: chrome
-  network: ws
-  ws-opts:
-    path: /@Marisa_kristi
-    headers:
-      Host: bapj1qapjk4.0sds0li1bwcz0i76it0gjxv1.workers.dev
-- name: 🇭🇰 中国香港 (Hong Kong) 05 (家宽) - xiaohe
-  server: ac7548f3ebe045b39a90288ff1e97528.pnuqcnp.cn
-  port: 443
-  udp: true
-  type: anytls
-  password: 9sK2mP8xQ7vL3nZ6
-  sni: ac7548f3ebe045b39a90288ff1e97528.lwdnxf.cn
-  skip-cert-verify: false
 proxy-groups:
 - name: PROXIES
   type: select
   proxies:
   - AUTO
-  - 🇰🇷 韩国 (South Korea) 01 (家宽) - xiaohe
-  - 🇹🇷 土耳其 (Turkey) 02 (移动家宽) - xiaohe
+  - 🇹🇷 土耳其 (Turkey) 01 (移动家宽) - xiaohe
+  - 🇭🇰 中国香港 (Hong Kong) 02 (家宽) - xiaohe
   - 🇹🇼 中国台湾 (Taiwan) 03 (家宽) - xiaohe
-  - 🇯🇵 日本 (Japan) 04 (家宽) - xiaohe
-  - 🇭🇰 中国香港 (Hong Kong) 05 (家宽) - xiaohe
 - name: AUTO
   type: url-test
   url: https://www.gstatic.com/generate_204
   interval: 300
   proxies:
-  - 🇰🇷 韩国 (South Korea) 01 (家宽) - xiaohe
-  - 🇹🇷 土耳其 (Turkey) 02 (移动家宽) - xiaohe
+  - 🇹🇷 土耳其 (Turkey) 01 (移动家宽) - xiaohe
+  - 🇭🇰 中国香港 (Hong Kong) 02 (家宽) - xiaohe
   - 🇹🇼 中国台湾 (Taiwan) 03 (家宽) - xiaohe
-  - 🇯🇵 日本 (Japan) 04 (家宽) - xiaohe
-  - 🇭🇰 中国香港 (Hong Kong) 05 (家宽) - xiaohe
 rules:
 - MATCH,PROXIES

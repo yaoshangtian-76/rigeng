@@ -5,20 +5,20 @@ mode: rule
 log-level: info
 proxies:
 - name: 🇨🇿 捷克 (Czech) 01 - xiaohe
-  server: 188.114.96.0
-  port: 443
+  server: 172.66.44.124
+  port: 8443
   udp: true
   type: vless
-  uuid: 3e43ffd1-3f7b-45b0-a955-c249010c7ebc
+  uuid: b2f2f9f2-1864-48ea-839b-22815faff1f1
   tls: true
-  servername: oPEN-39.avl-a47261.WoRKeRs.dev
+  servername: stf839dvvyog9d2qa4-b8z6ahgn7b7qi.pages.dev
   skip-cert-verify: false
-  client-fingerprint: chrome
+  client-fingerprint: randomized
   network: ws
   ws-opts:
-    path: /vl/DJ4khtSll0Q9gBBwF?ed=2560
+    path: /
     headers:
-      Host: open-39.avl-a47261.workers.dev
+      Host: stf839dvvyog9d2qa4-b8z6ahgn7b7qi.pages.dev
 proxy-groups:
 - name: PROXIES
   type: select
