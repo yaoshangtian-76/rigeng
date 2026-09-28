@@ -16,7 +16,7 @@ proxies:
     public-key: trh3vhKtu_iAKb6E2GuUvloJDZ8tN0jtzyj4kpV5IQA
     short-id: 6df42a2c
   servername: www.cloudflare.com
-  client-fingerprint: chrome
+  client-fingerprint: random
 - name: 🇦🇺 澳大利亚 (Australia) 02 - xiaohe
   server: 51.161.204.244
   port: 443
@@ -29,7 +29,7 @@ proxies:
     public-key: gCAazs5uxNuMZIxfDdw8wPE0nwKY4QfBfBkQveKAkEk
     short-id: 0ad08b47f498efd2
   servername: www.cloudflare.com
-  client-fingerprint: firefox
+  client-fingerprint: random
 - name: 🇦🇺 澳大利亚 (Australia) 03 - xiaohe
   server: 194.195.123.60
   port: 22368
