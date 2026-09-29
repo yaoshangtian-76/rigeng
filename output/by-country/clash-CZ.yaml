@@ -5,48 +5,27 @@ mode: rule
 log-level: info
 proxies:
 - name: 🇨🇿 捷克 (Czech) 01 - xiaohe
-  server: 104.26.15.4
+  server: 151.101.56.7
   port: 443
   udp: true
-  type: vless
-  uuid: 1e534c59-85c2-4042-a407-e491f68cb3a5
-  tls: true
-  servername: kJz42CNi3-kRCUj2-gQs8vEs15.foRNeWiRAN-1010.wOrKERs.dEV
+  type: trojan
+  password: mitivpn
+  sni: ssl.fastly.com
   skip-cert-verify: false
-  client-fingerprint: chrome
   network: ws
   ws-opts:
-    path: /vl/Z8Ag5xQbwmhIHsvyDj3?ed=2560
-    headers:
-      Host: kjz42cni3-krcuj2-gqs8ves15.fornewiran-1010.workers.dev
-- name: 🇨🇿 捷克 (Czech) 02 - xiaohe
-  server: restless-moon-dd68ridam-too-in-mamlekat.hgtghff67tdfhut3.workers.dev
-  port: 2053
-  udp: true
-  type: vless
-  uuid: dc1e9f00-c064-4870-9bfc-463db50257d7
-  tls: true
-  servername: RESTlESs-MoON-dD68RidaM-tOo-In-MAmLEkat.hGtghFF67tdFHUt3.WORkerS.DEV
-  skip-cert-verify: false
-  client-fingerprint: chrome
-  network: ws
-  ws-opts:
-    path: /eyJqdW5rIjoicVkwaG9XUUQyUDhzRkZ5UiIsInByb3RvY29sIjoidmwiLCJtb2RlIjoicHJveHlpcCIsInBhbmVsSVBzIjpbXX0=
-    headers:
-      Host: restless-moon-dd68ridam-too-in-mamlekat.hgtghff67tdfhut3.workers.dev
+    path: '@VPNine1'
 proxy-groups:
 - name: PROXIES
   type: select
   proxies:
   - AUTO
   - 🇨🇿 捷克 (Czech) 01 - xiaohe
-  - 🇨🇿 捷克 (Czech) 02 - xiaohe
 - name: AUTO
   type: url-test
   url: https://www.gstatic.com/generate_204
   interval: 300
   proxies:
   - 🇨🇿 捷克 (Czech) 01 - xiaohe
-  - 🇨🇿 捷克 (Czech) 02 - xiaohe
 rules:
 - MATCH,PROXIES
