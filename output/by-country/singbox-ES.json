@@ -4,22 +4,8 @@
   },
   "outbounds": [
     {
-      "type": "vless",
-      "tag": "🇪🇸 西班牙 (Spain) 01 - xiaohe",
-      "server": "172.64.42.85",
-      "server_port": 2095,
-      "uuid": "47fcef29-ab4e-4aa6-932b-d95a18f28a4e",
-      "transport": {
-        "type": "ws",
-        "path": "/?ed=2560security=tls",
-        "headers": {
-          "Host": "8nj2r.2k8t.f88.hh.vavava.kdns.fr"
-        }
-      }
-    },
-    {
       "type": "shadowsocks",
-      "tag": "🇪🇸 西班牙 (Spain) 02 - xiaohe",
+      "tag": "🇪🇸 西班牙 (Spain) 01 - xiaohe",
       "server": "108.181.121.226",
       "server_port": 8388,
       "method": "chacha20-ietf-poly1305",
@@ -27,7 +13,7 @@
     },
     {
       "type": "shadowsocks",
-      "tag": "🇪🇸 西班牙 (Spain) 03 - xiaohe",
+      "tag": "🇪🇸 西班牙 (Spain) 02 - xiaohe",
       "server": "140.174.184.5",
       "server_port": 8388,
       "method": "chacha20-ietf-poly1305",
@@ -35,7 +21,7 @@
     },
     {
       "type": "vless",
-      "tag": "🇪🇸 西班牙 (Spain) 04 - xiaohe",
+      "tag": "🇪🇸 西班牙 (Spain) 03 - xiaohe",
       "server": "193.238.154.5",
       "server_port": 443,
       "uuid": "e0b9fb0f-1bbd-478b-9580-c2294778338b",
@@ -60,8 +46,7 @@
         "auto",
         "🇪🇸 西班牙 (Spain) 01 - xiaohe",
         "🇪🇸 西班牙 (Spain) 02 - xiaohe",
-        "🇪🇸 西班牙 (Spain) 03 - xiaohe",
-        "🇪🇸 西班牙 (Spain) 04 - xiaohe"
+        "🇪🇸 西班牙 (Spain) 03 - xiaohe"
       ]
     },
     {
@@ -70,8 +55,7 @@
       "outbounds": [
         "🇪🇸 西班牙 (Spain) 01 - xiaohe",
         "🇪🇸 西班牙 (Spain) 02 - xiaohe",
-        "🇪🇸 西班牙 (Spain) 03 - xiaohe",
-        "🇪🇸 西班牙 (Spain) 04 - xiaohe"
+        "🇪🇸 西班牙 (Spain) 03 - xiaohe"
       ],
       "url": "https://www.gstatic.com/generate_204"
     },
