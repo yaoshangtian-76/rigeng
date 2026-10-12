@@ -5,21 +5,20 @@
   "outbounds": [
     {
       "type": "vless",
-      "tag": "🇦🇱 AL 01 - xiaohe",
-      "server": "best.valaiqm.ir",
-      "server_port": 3037,
-      "uuid": "a1fb63f7-a942-4010-a830-bc395703a9a4",
+      "tag": "🇺🇦 乌克兰 (Ukraine) 01 - xiaohe",
+      "server": "z5n1.vpnpolar.online",
+      "server_port": 443,
+      "uuid": "49e4b91a-bd15-4e54-9b51-41a3380afb51",
       "tls": {
         "enabled": true,
-        "server_name": "telewebion.ir",
-        "utls": {
-          "enabled": true,
-          "fingerprint": "chrome"
-        },
-        "reality": {
-          "enabled": true,
-          "public_key": "cYQAluLQY4m0yBUkvqWo3LEXTp-_9In3gJUDoEMmn1U",
-          "short_id": "a9c9"
+        "server_name": "z5n1.vpnpolar.online",
+        "insecure": false
+      },
+      "transport": {
+        "type": "ws",
+        "path": "/beeline",
+        "headers": {
+          "Host": "z5n1.vpnpolar.online"
         }
       }
     },
@@ -28,14 +27,14 @@
       "tag": "select",
       "outbounds": [
         "auto",
-        "🇦🇱 AL 01 - xiaohe"
+        "🇺🇦 乌克兰 (Ukraine) 01 - xiaohe"
       ]
     },
     {
       "type": "urltest",
       "tag": "auto",
       "outbounds": [
-        "🇦🇱 AL 01 - xiaohe"
+        "🇺🇦 乌克兰 (Ukraine) 01 - xiaohe"
       ],
       "url": "https://www.gstatic.com/generate_204"
     },
