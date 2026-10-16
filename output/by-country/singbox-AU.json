@@ -4,23 +4,19 @@
   },
   "outbounds": [
     {
-      "type": "vmess",
-      "tag": "🇲🇾 马来西亚 (Malaysia) 01 - xiaohe",
-      "server": "104.21.23.80",
+      "type": "hysteria2",
+      "tag": "🇦🇺 澳大利亚 (Australia) 01 - xiaohe",
+      "server": "152.67.115.203",
       "server_port": 443,
-      "uuid": "f5f0babe-aea2-4f07-a1fc-3c9820253f49",
-      "security": "auto",
+      "password": "633bc3be486b646190661ac2387c150a",
       "tls": {
         "enabled": true,
-        "server_name": "my.lovehk.xyz",
-        "insecure": false
+        "server_name": "www.bing.com",
+        "insecure": true
       },
-      "transport": {
-        "type": "ws",
-        "path": "/KualaLumpur1",
-        "headers": {
-          "Host": "my.lovehk.xyz"
-        }
+      "obfs": {
+        "type": "salamander",
+        "password": "850a3fb1cd33a28f12d837578ae1a2e7"
       }
     },
     {
@@ -28,14 +24,14 @@
       "tag": "select",
       "outbounds": [
         "auto",
-        "🇲🇾 马来西亚 (Malaysia) 01 - xiaohe"
+        "🇦🇺 澳大利亚 (Australia) 01 - xiaohe"
       ]
     },
     {
       "type": "urltest",
       "tag": "auto",
       "outbounds": [
-        "🇲🇾 马来西亚 (Malaysia) 01 - xiaohe"
+        "🇦🇺 澳大利亚 (Australia) 01 - xiaohe"
       ],
       "url": "https://www.gstatic.com/generate_204"
     },
