@@ -6,19 +6,12 @@ log-level: info
 proxies:
 - name: 🇱🇹 立陶宛 (Lithuania) 01 - xiaohe
   server: 195.238.126.20
-  port: 9045
+  port: 9086
   udp: true
   type: ss
   cipher: aes-256-cfb
-  password: Lp27rqyJq72bZsqX
+  password: 37Z4TFCYhfxcpc9Q
 - name: 🇱🇹 立陶宛 (Lithuania) 02 - xiaohe
-  server: 195.238.126.20
-  port: 9011
-  udp: true
-  type: ss
-  cipher: aes-256-cfb
-  password: M3t2ZEQcMGRWBjRa
-- name: 🇱🇹 立陶宛 (Lithuania) 03 - xiaohe
   server: b58e68t.lt1.h1clayd.click
   port: 443
   udp: true
@@ -30,7 +23,7 @@ proxies:
     short-id: 2301ac8aee8bf6d4
   servername: b58e68t.lt1.h1clayd.click
   client-fingerprint: safari
-- name: 🇱🇹 立陶宛 (Lithuania) 04 - xiaohe
+- name: 🇱🇹 立陶宛 (Lithuania) 03 - xiaohe
   server: 84.32.109.20
   port: 443
   udp: true
@@ -43,6 +36,13 @@ proxies:
     short-id: 0da7e14db353e7d0
   servername: litv.nztvpn.com
   client-fingerprint: chrome
+- name: 🇱🇹 立陶宛 (Lithuania) 04 - xiaohe
+  server: 195.238.126.20
+  port: 9045
+  udp: true
+  type: ss
+  cipher: aes-256-cfb
+  password: Lp27rqyJq72bZsqX
 proxy-groups:
 - name: PROXIES
   type: select
