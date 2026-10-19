@@ -4,19 +4,15 @@
   },
   "outbounds": [
     {
-      "type": "hysteria2",
+      "type": "trojan",
       "tag": "🇷🇴 罗马尼亚 (Romania) 01 - xiaohe",
-      "server": "162.249.125.133",
+      "server": "de1.dedushka.top",
       "server_port": 443,
-      "password": "QCgqi_I4EkV8UR-OgQ_tG4EnVTEVvIyR2GgRBzrIn2s",
+      "password": "4_VfP9fKaM-3LpSVvoZuc_WUzLoCdHaA",
       "tls": {
         "enabled": true,
-        "server_name": "hy2-new.aspidnet.xyz",
-        "insecure": false
-      },
-      "obfs": {
-        "type": "salamander",
-        "password": "c1b4086fea89914496c7e10967a419216566"
+        "server_name": "de1.dedushka.top",
+        "insecure": true
       }
     },
     {
@@ -31,7 +27,7 @@
         "server_name": "www.cloudflare.com",
         "utls": {
           "enabled": true,
-          "fingerprint": ""
+          "fingerprint": "firefox"
         },
         "reality": {
           "enabled": true,
@@ -41,27 +37,24 @@
       }
     },
     {
-      "type": "trojan",
+      "type": "vless",
       "tag": "🇷🇴 罗马尼亚 (Romania) 03 - xiaohe",
-      "server": "de1.dedushka.top",
+      "server": "146.70.124.85",
       "server_port": 443,
-      "password": "4_VfP9fKaM-3LpSVvoZuc_WUzLoCdHaA",
+      "uuid": "40abbe13-f02e-4da2-9b19-966c2c3eb4ee",
+      "flow": "xtls-rprx-vision",
       "tls": {
         "enabled": true,
-        "server_name": "de1.dedushka.top",
-        "insecure": false
-      }
-    },
-    {
-      "type": "hysteria2",
-      "tag": "🇷🇴 罗马尼亚 (Romania) 04 - xiaohe",
-      "server": "185.156.44.99",
-      "server_port": 443,
-      "password": "gf1:gfhysteria2024",
-      "tls": {
-        "enabled": true,
-        "server_name": "google.com",
-        "insecure": true
+        "server_name": "www.datadoghq.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "byzvlw97wjAAAfHs5AZRV0P0H6_JKBEZ4yfLS0HNewE",
+          "short_id": "fe24f8a0a560056e"
+        }
       }
     },
     {
@@ -71,8 +64,7 @@
         "auto",
         "🇷🇴 罗马尼亚 (Romania) 01 - xiaohe",
         "🇷🇴 罗马尼亚 (Romania) 02 - xiaohe",
-        "🇷🇴 罗马尼亚 (Romania) 03 - xiaohe",
-        "🇷🇴 罗马尼亚 (Romania) 04 - xiaohe"
+        "🇷🇴 罗马尼亚 (Romania) 03 - xiaohe"
       ]
     },
     {
@@ -81,8 +73,7 @@
       "outbounds": [
         "🇷🇴 罗马尼亚 (Romania) 01 - xiaohe",
         "🇷🇴 罗马尼亚 (Romania) 02 - xiaohe",
-        "🇷🇴 罗马尼亚 (Romania) 03 - xiaohe",
-        "🇷🇴 罗马尼亚 (Romania) 04 - xiaohe"
+        "🇷🇴 罗马尼亚 (Romania) 03 - xiaohe"
       ],
       "url": "https://www.gstatic.com/generate_204"
     },
