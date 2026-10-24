@@ -175,6 +175,10 @@ DATACENTER_ASNS = {
     60205,  # 62610 关联段
     8342,  # Deltacomputers/Evrasia 类
     9009, 47692, 62041, 56630, 57502,  # Serverius/ProXmedia/Clouvider 类
+    # ★ 实测误判样本 (rDNS/ISP 名伪装家宽, ip-api hosting=true)
+    26042,  # FiberState LLC (23.160.56.99: 名字含 "Fiber" 曾被误判为家宽)
+    21859, 62610,  # Zenlayer (收购 speakeasy DSL 段伪装家宽)
+    3549, 2828,  # Level3 / Verizon Business
 }
 
 # 民用宽带 ASN 白名单 (离线兜底; 关键国家主流运营商)
@@ -198,7 +202,8 @@ RESIDENTIAL_ASNS = {
     20057, 19024, 12271, 11404, 6983, 33554, 7155, 30162, 10790,
     # Comcast (7922/33487/22263...) / Charter (20115/10796/20057) / Cox / AT&T / Verizon
     702, 703, 704, 705, 706, 709, 710, 711, 712, 713, 714, 715,  # legacy Verizon
-    2828, 20001, 3549,  # CenturyLink/Level3 (部分为家宽)
+    20001,  # Spectrum/TWC 家宽段
+    # ★ 已剔除 2828 (Verizon Business) / 3549 (Level3): 骨干网, 挂靠其上的 IDC 会被误判家宽
     6167, 6162, 7018,  # AT&T
     5056,  # Cox East
     10796,  # Charter
@@ -300,6 +305,41 @@ RESIDENTIAL_NAME_PATTERNS = [
     "bigpond", "iinet", "optus", "tpg internet", "aussie broadband",
     "spark nz", "vodafone nz", "2degrees", "orcon", "slingshot",
 ]
+
+# ══════════════════════════════════════════════════════════════════
+# ★ 家宽判定阈值与"泛词治理"
+#
+# 背景: FiberState LLC (AS26042, 机房, ip-api hosting=true) 因 ISP 名里含
+#       "fiber", 命中 RESIDENTIAL_NAME_PATTERNS 后被判成 70 分家宽并进了
+#       家宽专区 —— 泛词单独定性是假家宽的最大来源。
+#
+# 规则:
+#   1) RESIDENTIAL_WEAK_PATTERNS 内的词 (fiber/cable/dsl/home/pool/customer...)
+#      不再单独定性为家宽, 命中只给 unknown 45 分;
+#   2) 只有运营商品牌强词 (chunghwa/comcast/charter/deutsche telekom...) 才给
+#      residential 66 分 —— 仍低于入池门槛, 只能进普通区;
+#   3) 进家宽专区必须: ASN 在 RESIDENTIAL_ASNS 白名单(82) 或 online mobile(85),
+#      且 ip-api 未报 hosting/proxy, 且 confidence >= RESIDENTIAL_MIN_CONFIDENCE。
+# ══════════════════════════════════════════════════════════════════
+
+# 家宽入池最低置信度 (原 60 → 78: 仅名称/弱信号不再够格)
+RESIDENTIAL_MIN_CONFIDENCE = 78
+
+# Scamalytics 拿不到分数时是否仍允许进家宽区 (True=允许, 名字标"疑似家宽")
+RESIDENTIAL_ALLOW_UNKNOWN_FRAUD = True
+
+# 家宽池低于该数量时输出告警 (避免"只有 2 条还以为能用")
+RESIDENTIAL_WARN_COUNT = 5
+
+# 每个家宽候选最多交叉尝试的前置数量 (多 relay 复测, 提升家宽存活率)
+CHAIN_RELAY_TRIES = 4
+
+# 泛词: 机房/转售商/云商名字里同样常见, 绝不能单独作为家宽依据
+RESIDENTIAL_WEAK_PATTERNS = {
+    "broadband", "fiber", "fibre", "cable", "dsl", "pppoe", "pppoa",
+    "ftth", "dynamic", "dial", "dialup", "residential", "home",
+    "consumer", "cust", "customer", "subscriber", "pool", "hosting",
+}
 
 # 协议 → 全称 (命名用)
 PROTOCOL_LABELS = {
@@ -1409,7 +1449,7 @@ def chain_retest(test_results: list) -> list:
         t, c = classify_network_type(r["exit_ip"], r.get("exit_country_online"),
                                      r.get("exit_asn_online"),
                                      r.get("exit_asn_org_online"), rec or None)
-        if t in ("residential", "mobile") and c >= 60:
+        if t in ("residential", "mobile") and c >= RESIDENTIAL_MIN_CONFIDENCE:
             res_candidates[(r["server"].lower(), r["port"], r["proto"])] = r
 
     if not res_candidates:
@@ -1417,35 +1457,39 @@ def chain_retest(test_results: list) -> list:
         return test_results
     print(f"[*] 链式复测: {len(res_candidates)} 个家宽候选")
 
-    # 2) 选 relay: 全体存活节点里延迟最低、非家宽候选自己 (避免自己套自己)
+    # 2) 构造 relay 池: 延迟最低的前 CHAIN_RELAY_TRIES 个存活节点
+    #    ★ 原实现只取 1 个 relay, 该 relay 打不通就整批家宽判死 ——
+    #      这是"家宽在用户侧大量不可用"的机制性原因之一。
+    #    ★ 改为每个家宽候选最多试 CHAIN_RELAY_TRIES 个前置, 任一通即保留;
+    #      同时记录命中的前置, 方便客户端的链式配置直接用同一个前置。
     alive_sorted = sorted(
         [r for r in test_results if r.get("alive") and not r.get("is_stalled")],
         key=lambda x: x.get("latency_ms", 99999))
-    relay_result = None
+    relay_pool = []
     for r in alive_sorted:
-        if (r["server"].lower(), r["port"], r["proto"]) not in res_candidates:
-            relay_result = r
+        if len(relay_pool) >= CHAIN_RELAY_TRIES:
             break
-    if not relay_result:
-        print("[!] 链式复测: 无可用 relay 节点, 跳过")
+        if (r["server"].lower(), r["port"], r["proto"]) in res_candidates:
+            continue
+        out = r.get("outbound")
+        if not out:
+            p = parse_node_uri(r["raw"])
+            out = p[0] if p else None
+        if not out:
+            continue
+        out = dict(out)
+        out.pop("detour", None)   # 防循环: 前置自身不可再带 detour
+        relay_pool.append({"out": out, "proto": r["proto"],
+                           "server": r["server"], "port": r["port"],
+                           "latency_ms": r.get("latency_ms", 99999)})
+    if not relay_pool:
+        print("[!] 链式复测: 无可构建的 relay 节点, 跳过")
         return test_results
-    relay_out = relay_result.get("outbound")
-    if not relay_out:
-        # 重新解析 relay 的 raw 拿 outbound
-        p = parse_node_uri(relay_result["raw"])
-        if p:
-            relay_out = p[0]
-    if not relay_out:
-        print("[!] 链式复测: relay outbound 构建失败, 跳过")
-        return test_results
-    # relay 必须剥离 detour (前置链复用时防循环)
-    relay_out = dict(relay_out)
-    relay_out.pop("detour", None)
-    print(f"[*] 链式 relay: {relay_result['proto']} {relay_result['server']}:{relay_result['port']} "
-          f"(延迟 {relay_result['latency_ms']}ms)")
+    print(f"[*] 链式 relay 池 {len(relay_pool)} 个: " +
+          ", ".join(f"{x['proto']} {x['server']}:{x['port']}({x['latency_ms']}ms)"
+                    for x in relay_pool))
 
-    # 3) 家宽候选逐个双跳复测 (注入 CHAIN_RELAY_OUT, test_single_node 自动加 detour)
-    os.environ["CHAIN_RELAY_OUT"] = json.dumps(relay_out)
+    # 3) 家宽候选 × relay 池 交叉复测 (注入 CHAIN_RELAY_OUT, test_single_node 自动加 detour)
     chain_alive, chain_dead = [], []
     try:
         for key, r in res_candidates.items():
@@ -1454,10 +1498,19 @@ def chain_retest(test_results: list) -> list:
             if not item[1]:
                 chain_dead.append(r)
                 continue
-            recheck = test_single_node(item)
-            if recheck and recheck.get("alive") and not recheck.get("is_stalled"):
+            passed = False
+            for relay in relay_pool:
+                os.environ["CHAIN_RELAY_OUT"] = json.dumps(relay["out"])
+                recheck = test_single_node(item)
+                if recheck and recheck.get("alive") and not recheck.get("is_stalled"):
+                    passed = True
+                    # 记录可用前置, 客户端链式配置可直接复用
+                    r["chain_relay"] = (f"{relay['proto']} {relay['server']}:{relay['port']}")
+                    break
+            if passed:
                 chain_alive.append(r)
             else:
+                r["_chain_failed"] = True
                 chain_dead.append(r)
     finally:
         os.environ.pop("CHAIN_RELAY_OUT", None)
@@ -1596,24 +1649,34 @@ def classify_network_type(ip: str, country: str, asn, org: str, ip_api_rec: dict
         if asn_int in RESIDENTIAL_ASNS:
             return "residential", 82
 
-    # 4) ISP 名称关键词
+    # 4) ISP 名称关键词 (★ 泛词不再单独定性为家宽)
     if org_lower:
         for kw in IDC_NAME_PATTERNS:
             if kw in org_lower:
                 return "datacenter", 70
-        for kw in RESIDENTIAL_NAME_PATTERNS:
-            if kw in org_lower:
-                return "residential", 70
+        strong_hit = any(kw in org_lower
+                         for kw in RESIDENTIAL_NAME_PATTERNS
+                         if kw not in RESIDENTIAL_WEAK_PATTERNS)
+        if strong_hit:
+            # 运营商品牌强词: 只给 66 分, 低于家宽门槛 → 仅进普通区
+            return "residential", 66
+        if any(kw in org_lower for kw in RESIDENTIAL_WEAK_PATTERNS):
+            # fiber/cable/home/pool 这类泛词: 不足以定性 (FiberState 误判根因)
+            return "unknown", 45
 
-    # 5) rDNS 兜底
+    # 5) rDNS 兜底 (同样不吃泛词)
     rdns = get_rdns(ip_str)
     if rdns:
         for kw in IDC_NAME_PATTERNS:
             if kw in rdns:
                 return "datacenter", 60
-        for kw in RESIDENTIAL_NAME_PATTERNS:
-            if kw in rdns:
-                return "residential", 60
+        strong_hit = any(kw in rdns
+                         for kw in RESIDENTIAL_NAME_PATTERNS
+                         if kw not in RESIDENTIAL_WEAK_PATTERNS)
+        if strong_hit:
+            return "residential", 62
+        if any(kw in rdns for kw in RESIDENTIAL_WEAK_PATTERNS):
+            return "unknown", 42
 
     return "unknown", 30
 
@@ -1937,7 +2000,12 @@ def ipapi_is_verify(ip: str) -> dict:
             return {}
         j = r.json()
         return {"company": j.get("company") or "", "asn": j.get("asn") or "",
-                "country": j.get("country") or ""}
+                "country": j.get("country") or "",
+                "is_datacenter": bool(j.get("is_datacenter")),
+                "is_abuser": bool(j.get("is_abuser")),
+                "is_crawler": bool(j.get("is_crawler")),
+                "is_vpn": bool(j.get("is_vpn")),
+                "is_proxy": bool(j.get("is_proxy"))}
     except Exception:
         return {}
 
@@ -2078,6 +2146,12 @@ def classify_and_export(test_results: list):
             if n["net_type"] not in ("residential", "mobile"):
                 continue
             info = ipapi_verify.get(n["exit_ip"]) or {}
+            # ★ 结构化标志硬否决 (比名字关键词更可靠)
+            if any(info.get(k) for k in ("is_datacenter", "is_abuser", "is_crawler")):
+                n["net_type"] = "datacenter"
+                n["confidence"] = 88
+                vetoed += 1
+                continue
             comp_asn = (info.get("company", "") + " " + info.get("asn", "")).lower()
             if any(kw in comp_asn for kw in (
                 "zenlayer", "bunny", "cloudflare", "akamai", "fastly",
@@ -2124,7 +2198,7 @@ def classify_and_export(test_results: list):
     residential = []
     res_seen_ip = set()
     for n in unique_nodes:
-        if n["net_type"] in ("residential", "mobile") and n["confidence"] >= 60:
+        if n["net_type"] in ("residential", "mobile") and n["confidence"] >= RESIDENTIAL_MIN_CONFIDENCE:
             if n.get("raw") in chain_failed_raws:
                 n["net_type"] = "datacenter"
                 n["confidence"] = 70
@@ -2141,6 +2215,11 @@ def classify_and_export(test_results: list):
 
     non_residential = [n for n in unique_nodes if n not in residential]
     print(f"[*] 家宽/移动网络节点: {len(residential)} | 普通(机房/CDN): {len(non_residential)}")
+    if residential:
+        # ★ 便于维护: 把实测稳定的真家宽 ASN 补进 RESIDENTIAL_ASNS 白名单
+        res_asns = sorted({f"{n.get('country') or '??'}:AS{n.get('asn')}"
+                           for n in residential if n.get("asn")})
+        print(f"[*] 家宽 ASN 分布 ({len(res_asns)}): " + ", ".join(res_asns))
 
     # 排序: 家宽在前, 延迟升序
     unique_nodes.sort(key=lambda x: (0 if x in residential else 1, x["latency_ms"]))
@@ -2166,10 +2245,15 @@ def make_node_name(item, idx, force_residential=False):
     cc = item["country"]
     flag = get_country_flag(cc)
     cname = COUNTRY_NAMES.get(cc, cc)
-    is_res = item["net_type"] in ("residential", "mobile") and (item["confidence"] >= 60 or force_residential)
+    is_res = (item["net_type"] in ("residential", "mobile")
+              and (item["confidence"] >= RESIDENTIAL_MIN_CONFIDENCE or force_residential))
     tag = ""
     if is_res:
-        tag = " (家宽)" if item["net_type"] == "residential" else " (移动家宽)"
+        # Scamalytics 拿不到分的: 标"疑似", 避免用户把未验证 IP 当真家宽
+        if item.get("fraud_score", -1) < 0 and RESIDENTIAL_ALLOW_UNKNOWN_FRAUD:
+            tag = " (疑似家宽)" if item["net_type"] == "residential" else " (疑似移动家宽)"
+        else:
+            tag = " (家宽)" if item["net_type"] == "residential" else " (移动家宽)"
     # Scamalytics 风控分: 高风险节点名内标注 (R分数), 低危不标 (保持简洁)
     fraud = item.get("fraud_score", -1)
     risk_tag = f" R{fraud}" if 0 <= fraud < 75 and fraud >= 40 else (" ⚠R" if fraud >= 75 else "")
@@ -2240,6 +2324,11 @@ def export_all(unique_nodes, residential, non_residential):
         export_singbox_json(s, os.path.join(RESIDENTIAL_COUNTRY_DIR, f"singbox-{cc}.json"))
 
     print(f"[*] 导出完毕: 全量 {len(all_links)} | 家宽 {len(res_links)}")
+    if len(res_links) < RESIDENTIAL_WARN_COUNT:
+        print(f"[!] 家宽池仅 {len(res_links)} 条 (阈值 {RESIDENTIAL_WARN_COUNT}): "
+              f"免费源真家宽极少, 这部分请当作'待验证', 不要直接压主力流量。")
+        print("[!] 提升家宽可用性的方向: ①自建出口 (甲骨文 ARM + cfnew 链式) "
+              "②付费住宅代理 ③不要指望公开免费池稳定供给真家宽。")
     return len(all_links), len(res_links)
 
 
