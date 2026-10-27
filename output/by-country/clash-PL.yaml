@@ -5,18 +5,13 @@ mode: rule
 log-level: info
 proxies:
 - name: 🇵🇱 波兰 (Poland) 01 - xiaohe
-  server: 54.37.131.126
-  port: 80
+  server: pl2.shvpn.ru
+  port: 4443
   udp: true
-  type: vmess
-  uuid: 6deef9ad-1357-443d-f95c-cb18952c20b3
-  alterId: 0
-  cipher: auto
-  network: ws
-  ws-opts:
-    path: /
-    headers:
-      Host: google.whatsapp.snapp.torob.basalam.hesanid8.ir.
+  type: hysteria2
+  password: c0242d1b-db7a-4dcf-95ff-e10a3ef1c1a3
+  sni: pl2.shvpn.ru
+  skip-cert-verify: false
 - name: 🇵🇱 波兰 (Poland) 02 - xiaohe
   server: 2.26.6.1
   port: 2087
@@ -28,13 +23,11 @@ proxies:
   skip-cert-verify: false
   client-fingerprint: chrome
 - name: 🇵🇱 波兰 (Poland) 03 - xiaohe
-  server: 92.118.150.146
-  port: 443
+  server: site.teslamotor.site
+  port: 20001
   udp: true
-  type: trojan
-  password: Trojan@82164024
-  sni: pl.tronsg.com
-  skip-cert-verify: false
+  type: vless
+  uuid: 8e8210b7-71a4-4799-8b9b-2e69698b1eaf
 - name: 🇵🇱 波兰 (Poland) 04 - xiaohe
   server: 77.232.135.141
   port: 8445
@@ -49,18 +42,25 @@ proxies:
   grpc-opts:
     grpc-service-name: beru-pl
 - name: 🇵🇱 波兰 (Poland) 05 - xiaohe
-  server: site.teslamotor.site
-  port: 20001
+  server: 54.37.131.126
+  port: 80
   udp: true
-  type: vless
-  uuid: 8e8210b7-71a4-4799-8b9b-2e69698b1eaf
+  type: vmess
+  uuid: 6deef9ad-1357-443d-f95c-cb18952c20b3
+  alterId: 0
+  cipher: auto
+  network: ws
+  ws-opts:
+    path: /
+    headers:
+      Host: google.whatsapp.snapp.torob.basalam.hesanid8.ir.
 - name: 🇵🇱 波兰 (Poland) 06 - xiaohe
-  server: pl2.shvpn.ru
-  port: 4443
+  server: 92.118.150.146
+  port: 443
   udp: true
-  type: hysteria2
-  password: c0242d1b-db7a-4dcf-95ff-e10a3ef1c1a3
-  sni: pl2.shvpn.ru
+  type: trojan
+  password: Trojan@82164024
+  sni: pl.tronsg.com
   skip-cert-verify: false
 proxy-groups:
 - name: PROXIES
