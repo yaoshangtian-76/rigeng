@@ -12,7 +12,7 @@ proxies:
   cipher: chacha20-ietf-poly1305
   password: QFWzCw2uX9B9i6qAYeFBIE
 - name: 🇷🇴 罗马尼亚 (Romania) 02 - xiaohe
-  server: 155.117.5.208
+  server: 178.83.45.226
   port: 2052
   udp: true
   type: vless
