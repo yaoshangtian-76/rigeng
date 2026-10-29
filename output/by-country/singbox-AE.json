@@ -4,9 +4,17 @@
   },
   "outbounds": [
     {
-      "type": "hysteria2",
+      "type": "shadowsocks",
       "tag": "🇦🇪 阿联酋 (UAE) 01 - xiaohe",
-      "server": "forshynewh.duckdns.org",
+      "server": "ams1.rvpn.app",
+      "server_port": 8388,
+      "method": "chacha20-ietf-poly1305",
+      "password": "x2A6AsyZ-rAllz0wbKHzWA"
+    },
+    {
+      "type": "hysteria2",
+      "tag": "🇦🇪 阿联酋 (UAE) 02 - xiaohe",
+      "server": "217.60.72.225",
       "server_port": 443,
       "password": "329e13e4-ee7c-4802-ac72-5fcab79c2402",
       "tls": {
@@ -17,7 +25,7 @@
     },
     {
       "type": "hysteria2",
-      "tag": "🇦🇪 阿联酋 (UAE) 02 - xiaohe",
+      "tag": "🇦🇪 阿联酋 (UAE) 03 - xiaohe",
       "server": "130.49.161.70",
       "server_port": 443,
       "password": "p7Q76LzlnS4hIzr1W3staBOnUe_WwSkR",
@@ -30,14 +38,6 @@
         "type": "salamander",
         "password": "rG07s3COMIEvdnQipRyWzx_H_2xygNC3"
       }
-    },
-    {
-      "type": "shadowsocks",
-      "tag": "🇦🇪 阿联酋 (UAE) 03 - xiaohe",
-      "server": "ams1.rvpn.app",
-      "server_port": 8388,
-      "method": "chacha20-ietf-poly1305",
-      "password": "x2A6AsyZ-rAllz0wbKHzWA"
     },
     {
       "type": "vless",
