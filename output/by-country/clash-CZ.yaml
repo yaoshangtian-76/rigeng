@@ -4,30 +4,30 @@ allow-lan: true
 mode: rule
 log-level: info
 proxies:
-- name: 🇰🇿 哈萨克斯坦 (Kazakhstan) 01 - xiaohe
-  server: 45.136.59.28
-  port: 43000
+- name: 🇨🇿 捷克 (Czech) 01 - xiaohe
+  server: 195.123.245.241
+  port: 443
   udp: true
   type: vless
-  uuid: a8b8b21e-1f31-4e4d-a639-efb2de0d577e
+  uuid: 7c053ca8-38cc-45e2-930c-eda1fd66f903
   flow: xtls-rprx-vision
   tls: true
   reality-opts:
-    public-key: osqok9aA_NR7WyAxZptD36-_U8BF_9gL8AH84MMzbFs
-    short-id: ced96d59
-  servername: 45.136.59.28
+    public-key: hlY5ce1UsVIgE46y5PlEZhUsSaXUnCtoDLLaGrhInjw
+    short-id: 23d0950d60bc0d5b
+  servername: gateway.icloud.com
   client-fingerprint: chrome
 proxy-groups:
 - name: PROXIES
   type: select
   proxies:
   - AUTO
-  - 🇰🇿 哈萨克斯坦 (Kazakhstan) 01 - xiaohe
+  - 🇨🇿 捷克 (Czech) 01 - xiaohe
 - name: AUTO
   type: url-test
   url: https://www.gstatic.com/generate_204
   interval: 300
   proxies:
-  - 🇰🇿 哈萨克斯坦 (Kazakhstan) 01 - xiaohe
+  - 🇨🇿 捷克 (Czech) 01 - xiaohe
 rules:
 - MATCH,PROXIES
