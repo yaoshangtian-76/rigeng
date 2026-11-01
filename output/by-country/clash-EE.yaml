@@ -1,0 +1,31 @@
+port: 7890
+socks-port: 7891
+allow-lan: true
+mode: rule
+log-level: info
+proxies:
+- name: 🇪🇪 爱沙尼亚 (Estonia) 01 - xiaohe
+  server: 188.225.62.62
+  port: 7443
+  udp: true
+  type: vless
+  uuid: 6116f0f3-15eb-4217-b38e-16514dc00ba1
+  flow: xtls-rprx-vision
+  tls: true
+  servername: ru2.datacore-tech.ru
+  skip-cert-verify: false
+  client-fingerprint: safari
+proxy-groups:
+- name: PROXIES
+  type: select
+  proxies:
+  - AUTO
+  - 🇪🇪 爱沙尼亚 (Estonia) 01 - xiaohe
+- name: AUTO
+  type: url-test
+  url: https://www.gstatic.com/generate_204
+  interval: 300
+  proxies:
+  - 🇪🇪 爱沙尼亚 (Estonia) 01 - xiaohe
+rules:
+- MATCH,PROXIES
