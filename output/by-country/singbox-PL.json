@@ -18,22 +18,25 @@
     {
       "type": "vless",
       "tag": "🇵🇱 波兰 (Poland) 02 - xiaohe",
-      "server": "179.198.49.218",
-      "server_port": 443,
-      "uuid": "7ad63b26-bf70-4872-8fab-ebaf73a1e19d",
-      "flow": "xtls-rprx-vision",
+      "server": "ru1.radiolumens.uk",
+      "server_port": 8445,
+      "uuid": "36cf792c-f07d-4500-97ea-a395e5178deb",
       "tls": {
         "enabled": true,
-        "server_name": "assets-44.topp-con.xyz",
+        "server_name": "ru1.radiolumens.uk",
+        "insecure": false,
+        "alpn": [
+          "h2",
+          "http/1.1"
+        ],
         "utls": {
           "enabled": true,
           "fingerprint": "chrome"
-        },
-        "reality": {
-          "enabled": true,
-          "public_key": "9CKMhiYPXEIfQh_XFbbN1GoBxeLxJkaar2wg9FZKfBo",
-          "short_id": "75fe71d16ccae610"
         }
+      },
+      "transport": {
+        "type": "grpc",
+        "service_name": "beru-pl"
       }
     },
     {

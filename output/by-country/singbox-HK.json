@@ -15,7 +15,7 @@
         "server_name": "www.amazon.com",
         "utls": {
           "enabled": true,
-          "fingerprint": "firefox"
+          "fingerprint": "chrome"
         },
         "reality": {
           "enabled": true,
@@ -44,7 +44,7 @@
       "password": "H7mP2xY9kJ4nQ8wR5tF6vB3z",
       "tls": {
         "enabled": true,
-        "server_name": "202.146.222.89",
+        "server_name": "https%3a%2f%2ft.me%2fclashv8%f0%9f%87%a8%f0%9f%87%b3",
         "insecure": true
       }
     },
@@ -56,7 +56,7 @@
       "password": "H7mP2xY9kJ4nQ8wR5tF6vB3z",
       "tls": {
         "enabled": true,
-        "server_name": "off",
+        "server_name": "https://t.me/wangcai2🇨🇳",
         "insecure": true
       }
     },
@@ -68,8 +68,42 @@
       "password": "H7mP2xY9kJ4nQ8wR5tF6vB3z",
       "tls": {
         "enabled": true,
-        "server_name": "https://t.me/wangcai2��",
+        "server_name": "202.146.222.29",
         "insecure": true
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇭🇰 中国香港 (Hong Kong) 06 - xiaohe",
+      "server": "38.76.180.144",
+      "server_port": 1443,
+      "uuid": "d98b67d4-024a-4bba-91e2-e6ebece6df11",
+      "transport": {
+        "type": "ws",
+        "path": "/vless-ws",
+        "headers": {
+          "Host": "38.76.180.144"
+        }
+      }
+    },
+    {
+      "type": "vless",
+      "tag": "🇭🇰 中国香港 (Hong Kong) 07 - xiaohe",
+      "server": "45.207.156.110",
+      "server_port": 8443,
+      "uuid": "eb8c97f7-a154-4442-91b0-54c0d055ad0b",
+      "tls": {
+        "enabled": true,
+        "server_name": "github.githubassets.com",
+        "utls": {
+          "enabled": true,
+          "fingerprint": "chrome"
+        },
+        "reality": {
+          "enabled": true,
+          "public_key": "4g6gX0ueJap7pY_iTDx23h6bzo3KIOTcFzP1Uacn0QA",
+          "short_id": "4ad2e4e660550e43"
+        }
       }
     },
     {
@@ -81,7 +115,9 @@
         "🇭🇰 中国香港 (Hong Kong) 02 - xiaohe",
         "🇭🇰 中国香港 (Hong Kong) 03 - xiaohe",
         "🇭🇰 中国香港 (Hong Kong) 04 - xiaohe",
-        "🇭🇰 中国香港 (Hong Kong) 05 - xiaohe"
+        "🇭🇰 中国香港 (Hong Kong) 05 - xiaohe",
+        "🇭🇰 中国香港 (Hong Kong) 06 - xiaohe",
+        "🇭🇰 中国香港 (Hong Kong) 07 - xiaohe"
       ]
     },
     {
@@ -92,7 +128,9 @@
         "🇭🇰 中国香港 (Hong Kong) 02 - xiaohe",
         "🇭🇰 中国香港 (Hong Kong) 03 - xiaohe",
         "🇭🇰 中国香港 (Hong Kong) 04 - xiaohe",
-        "🇭🇰 中国香港 (Hong Kong) 05 - xiaohe"
+        "🇭🇰 中国香港 (Hong Kong) 05 - xiaohe",
+        "🇭🇰 中国香港 (Hong Kong) 06 - xiaohe",
+        "🇭🇰 中国香港 (Hong Kong) 07 - xiaohe"
       ],
       "url": "https://www.gstatic.com/generate_204"
     },
